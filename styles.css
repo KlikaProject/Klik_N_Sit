@@ -24,7 +24,6 @@
     font-family: -webkit-body;
     color: white;
     opacity: 41%;
-    padding-right: 60px;
 }
 
 .specialLink{
@@ -39,4 +38,14 @@
 
 .navbar.transparent.navbar-inverse .navbar-inner {
     background: rgba(0,0,0,0.4);
+ }
+
+ .HomeLoginButton{
+    border-radius: 5px;
+    border: 0px;
+    color: black;
+    margin: 5px;
+    background-color: ghostwhite;
+    opacity: 71%;
+    width: 19%;
  }
