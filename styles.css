@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.loginInput {
+    margin: 5px;
+    opacity: 40%;
+}
+
+.justify-content-center {
+    -ms-flex-pack: center !important;
+    justify-content: center !important;
+}
+
+.loginTitle{
+    color: aliceblue;
+    font-family: -webkit-body;
+    font-size: 19px;
+    opacity: 68%;
+    padding-right: 123px;
+}
+
+.loginButton{
+    font-size: small;
+    font-family: -webkit-body;
+    color: white;
+    opacity: 41%;
+    padding-right: 60px;
+}
+
+.specialLink{
+    background: transparent;
+    border: none;
+    color: black;
+    font-size: 19px;
+    opacity: 100%;
+    margin: 0px; 
+    margin-left: 15px;
+}
+
+.navbar.transparent.navbar-inverse .navbar-inner {
+    background: rgba(0,0,0,0.4);
+ }
