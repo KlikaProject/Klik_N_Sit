@@ -41,11 +41,49 @@
  }
 
  .HomeLoginButton{
-    border-radius: 5px;
+    border-radius: 18px;
     border: 0px;
-    color: black;
+    color: white;
     margin: 5px;
-    background-color: ghostwhite;
+    background-color: rgb(158, 158, 170);
     opacity: 71%;
-    width: 19%;
+    width: 40%;
  }
+
+ .alert{
+    color: #ad7070;
+     display: inline-block;
+     animation: 2s alertAnim forwards;
+ }
+
+ @keyframes alertAnim {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+     }
+     to {
+         opacity: 1;
+         transform: translateY(0);
+     }
+     
+ }
+
+ .loginInputField{
+    border-radius: 29px;
+    border: 0px;
+    width: 300px;
+    opacity: 20%;
+ }
+
+ input {
+    padding-left: 15px;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+@media only screen and (max-width: 480px) {
+    img {
+    width: 100%;
+    }
+    }

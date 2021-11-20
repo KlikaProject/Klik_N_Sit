@@ -1,0 +1,35 @@
+<div style="margin-top: 100px;">
+    <form style="position: relative;width: auto;padding-top: 100px;" [formGroup]="loginForm"
+        (ngSubmit)="login(loginForm.value)" class="col-md-4 col-md-offset-4 text-center">
+        <h1 class="loginTitle" style="text-align: center;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sign Up</h1>
+        <div class="loginInput">
+            <input type="text" placeholder="   Name" formControlName="name" class="form-group col-lg-15 loginInputField" >
+        </div>
+        <div class="alert" *ngIf="!loginForm.controls['name'].valid && loginForm.controls['name'].touched">
+            This Field is Required
+        </div>
+        <div class="loginInput">
+            <input type="text" placeholder="   Email" formControlName="email" class="form-group col-lg-15 loginInputField">
+        </div>
+        <div class="alert" *ngIf="!loginForm.controls['email'].valid && loginForm.controls['email'].touched">
+            This Field is Required
+        </div>
+        <div class="loginInput">
+            <input type="password" placeholder="   Password" formControlName="password" class="form-group col-lg-15 loginInputField">
+        </div>
+        <div class="alert" *ngIf="!loginForm.controls['password'].valid && loginForm.controls['password'].touched">
+            This Field is Required
+        </div>
+        <div class="loginInput">
+            <input type="password" placeholder="   Confirm Password" formControlName="passwordConfirm" class="form-group col-lg-15 loginInputField">
+        </div>
+        <div class="alert" *ngIf="(!loginForm.controls['passwordConfirm'].valid && loginForm.controls['passwordConfirm'].touched)">
+            This Field is Required
+        </div>
+        <div class="loginButton">
+           <button class="HomeLoginButton" style="width: fit-content;">Sign Up</button>
+        </div>
+    </form>
+
+</div>

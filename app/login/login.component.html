@@ -1,24 +1,27 @@
-<div>
+<div style="margin-top: 100px;">
     <form style="position: relative;width: auto;padding-top: 100px;" [formGroup]="loginForm"
         (ngSubmit)="login(loginForm.value)" class="col-md-4 col-md-offset-4 text-center">
-        <h1 class="loginTitle">Hello!</h1>
+        <h1 class="loginTitle"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hello!</h1>
         <div class="loginInput">
-            <input type="text" placeholder=" Email" formControlName="email" class="form-group col-lg-15" style="border-radius: 1px;
-            border: 0px;">
+            <input type="text" placeholder="   Email" formControlName="email" class="form-group col-lg-15 loginInputField" >
+        </div>
+        <div class="alert" *ngIf="!loginForm.controls['email'].valid && loginForm.controls['email'].touched">
+            This Field is Required
         </div>
         <div class="loginInput">
-            <input type="password" placeholder=" Password" formControlName="password" class="form-group col-lg-15"
-                style="border-radius: 1px;
-            border: 0px;">
+            <input type="password" placeholder="   Password" formControlName="password" class="form-group col-lg-15 loginInputField">
+        </div>
+        <div class="alert" *ngIf="!loginForm.controls['password'].valid && loginForm.controls['password'].touched">
+            This Field is Required
         </div>
         <div class="loginButton">
             <input style="border-radius: 5px;
             border: 0px;color: rgb(110, 92, 92);margin: 5px;
-            " type="submit" class="form-group col-lg-15" value="login">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            " type="submit" class="form-group col-lg-15" value="Login">
             <input style="border-radius: 5px;
 border: 0px;color: black;margin: 5px;" type="button" class="form-group col-lg-15 specialLink"
-                value="Sign up" (click)="signUp()">
+                value="Sign up"  [routerLink]="['/SignUp']">
         </div>
     </form>
 
