@@ -4,12 +4,18 @@ import uuid
 
 
 class Address(models.Model):
+    # Primary key
+    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+
+    # Attributes
     city = models.CharField(max_length=200, null=True, blank=True)
     street = models.CharField(max_length=200, null=True, blank=True)
     Entrance = models.CharField(max_length=200, null=True, blank=True)
     zip_code = models.CharField(max_length=10, null=True, blank=True)
     country = models.CharField(max_length=200, null=True, blank=True)
-    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+
+    def __str__(self):
+        return str(self.street) + ', ' + str(self.city) + ', ' + str(self.Entrance) + ', ' + str(self.country)
 
 
 # TODO: need to modify to null=False, blank=False, after connections users and profiles properly
@@ -18,14 +24,22 @@ class Profile(models.Model):
         ('manager', 'Manager'),
         ('employee', 'Employee')
     )
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+
+    # Primary key
+    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+
+    # Attributes
     name = models.CharField(max_length=200, null=True, blank=True)
     email = models.EmailField(max_length=300, null=True, blank=True)
     birth_date = models.DateTimeField(null=True, blank=True)
     role = models.CharField(max_length=200, choices=ROLE_TYPE)
     address_id = models.ForeignKey('Address', on_delete=models.SET_NULL, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
-    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+    num_of_logins = models.PositiveIntegerField(default=0)
+    last_login = models.DateTimeField(null=True, blank=True)
+
+    # Foreign keys
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return str(self.user.username)
