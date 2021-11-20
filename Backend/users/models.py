@@ -12,12 +12,13 @@ class Address(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
 
+# TODO: need to modify to null=False, blank=False, after connections users and profiles properly
 class Profile(models.Model):
     ROLE_TYPE = (
         ('manager', 'Manager'),
         ('employee', 'Employee')
     )
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True) # need to modify to null=False
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=200, null=True, blank=True)
     email = models.EmailField(max_length=300, null=True, blank=True)
     birth_date = models.DateTimeField(null=True, blank=True)
