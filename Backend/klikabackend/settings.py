@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
-    'klikaapp',
-    'users',
+    'klikaapp.apps.KlikaappConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [

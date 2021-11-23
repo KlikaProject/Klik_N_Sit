@@ -23,6 +23,12 @@ class Customer(models.Model):
 
 
 class Reservations(models.Model):
+    PRIORITIES = (
+        (1, 'Low'),
+        (2, 'Regular'),
+        (3, 'High')
+    )
+
     # Primary key
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
@@ -32,13 +38,14 @@ class Reservations(models.Model):
     cancelled = models.BooleanField(default=False)
     bill = models.FloatField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
+    priority = models.PositiveSmallIntegerField(choices=PRIORITIES, null=True, blank=True)
 
     # Foreign keys
-    customer_id = models.ForeignKey('Customer', on_delete=models.SET_NULL, null=True, blank=True)
-    table_id = models.ForeignKey('Table', on_delete=models.SET_NULL, null=True, blank=True)
-    business_id = models.ForeignKey('Business', on_delete=models.SET_NULL, null=True, blank=True)
-    event_id = models.ForeignKey('Event', on_delete=models.SET_NULL, null=True, blank=True)
+    customer = models.ForeignKey('Customer', on_delete=models.SET_NULL, null=True, blank=True)
+    business = models.ForeignKey('Business', on_delete=models.SET_NULL, null=True, blank=True)
+    event = models.ForeignKey('Event', on_delete=models.SET_NULL, null=True, blank=True)
     reserved_by = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)
+    table = models.ManyToManyField('Table')
 
     def __str__(self):
         return 'ID: ' + str(self.id) + ', Customer: ' + str(self.customer_id.name)
@@ -62,7 +69,7 @@ class Event(models.Model):
         return self.title
 
 
-class table(models.Model):
+class Table(models.Model):
     TABLE_TYPE = (
         ('bar', 'Bar Table'),
         ('regular', 'Regular Table'),
@@ -75,17 +82,31 @@ class table(models.Model):
     # Attributes
     num = models.PositiveSmallIntegerField()
     type = models.CharField(max_length=200, choices=TABLE_TYPE)
-    location = models.CharField(max_length=200)
-    sub_location = models.CharField(max_length=200, null=True, blank=True)
+    #sub_location = models.CharField(max_length=200, null=True, blank=True)
     max_persons = models.PositiveSmallIntegerField(null=True, blank=True)
     min_persons = models.PositiveSmallIntegerField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
+    priority = models.PositiveSmallIntegerField(null=True, blank=True)
 
     # Foreign keys
-    business_id = models.ForeignKey('Business', on_delete=models.CASCADE)
+    business = models.ForeignKey('Business', on_delete=models.CASCADE)
+    location = models.ForeignKey('Location', on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.num) + ', ' + str(self.business_id.name)
+
+
+class Location(models.Model):
+
+    # Primary key
+    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+
+    # Attributes
+    name = models.CharField(max_length=200)
+    priority = models.PositiveSmallIntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return str(self.name)
 
 
 class Business(models.Model):
@@ -94,11 +115,12 @@ class Business(models.Model):
 
     # Attributes
     name = models.CharField(max_length=200)
-    website = models.TextField( null=True, blank=True)
+    website = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
+    logo = models.ImageField(null=True, blank=True)
 
     # Foreign keys
-    address_id = models.ForeignKey(Address, on_delete=models.SET_NULL, null=True, blank=True)
+    address = models.ForeignKey(Address, on_delete=models.SET_NULL, null=True, blank=True)
     user = models.ManyToManyField(Profile)
 
     def __str__(self):
