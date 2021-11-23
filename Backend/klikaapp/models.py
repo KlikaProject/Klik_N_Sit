@@ -10,11 +10,12 @@ class Customer(models.Model):
     # Attributes
     name = models.CharField(max_length=200)
     Email = models.EmailField(max_length=400, null=True, blank=True)
+    birth_date = models.DateTimeField(null=True, blank=True)
     Phone_num = models.CharField(max_length=25, null=True, blank=True)
     num_of_reservations = models.PositiveIntegerField(default=0)
     num_of_cancellations = models.PositiveIntegerField(default=0)
     last_reservation = models.DateTimeField(auto_now_add=True)
-    rank = models.IntegerField(default= models.SET_NULL, null=True, blank=True)
+    rank = models.IntegerField(default=models.SET_NULL, null=True, blank=True)
     comments = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
 
