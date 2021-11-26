@@ -49,7 +49,7 @@ class Reservations(models.Model):
     table = models.ManyToManyField('Table')
 
     def __str__(self):
-        return 'ID: ' + str(self.id) + ', Customer: ' + str(self.customer_id.name)
+        return 'ID: ' + str(self.id)
 
 
 class Event(models.Model):
@@ -94,7 +94,7 @@ class Table(models.Model):
     location = models.ForeignKey('Location', on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.num) + ', ' + str(self.business_id.name)
+        return str(self.id)
 
 
 class Location(models.Model):
