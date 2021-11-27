@@ -31,14 +31,14 @@ class Profile(models.Model):
     # Attributes
     name = models.CharField(max_length=200, null=True, blank=True)
     email = models.EmailField(max_length=300, null=True, blank=True)
-    birth_date = models.DateTimeField(null=True, blank=True)
+    birth_date = models.DateField(null=True, blank=True)
     role = models.CharField(max_length=200, choices=ROLE_TYPE)
-    address_id = models.ForeignKey('Address', on_delete=models.SET_NULL, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     num_of_logins = models.PositiveIntegerField(default=0)
     last_login = models.DateTimeField(null=True, blank=True)
 
     # Foreign keys
+    address = models.ForeignKey('Address', on_delete=models.SET_NULL, null=True, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):

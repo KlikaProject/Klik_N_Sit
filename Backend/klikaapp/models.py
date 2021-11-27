@@ -10,7 +10,7 @@ class Customer(models.Model):
     # Attributes
     name = models.CharField(max_length=200)
     Email = models.EmailField(max_length=400, null=True, blank=True)
-    birth_date = models.DateTimeField(null=True, blank=True)
+    birth_date = models.DateField(null=True, blank=True)
     Phone_num = models.CharField(max_length=25, null=True, blank=True)
     num_of_reservations = models.PositiveIntegerField(default=0)
     num_of_cancellations = models.PositiveIntegerField(default=0)
@@ -59,7 +59,8 @@ class Event(models.Model):
     # Attributes
     title = models.CharField(max_length=200)
     event_type = models.CharField(max_length=200, null=True, blank=True)  # maybe change to selection
-    date = models.DateTimeField(null=True, blank=True)
+    date = models.DateField(null=True, blank=True)
+    time = models.TimeField(null=True, blank=True)
     entries = models.PositiveIntegerField(null=True, blank=True)
     income = models.FloatField(null=True, blank=True)
     outcome = models.FloatField(null=True, blank=True)
@@ -117,12 +118,13 @@ class Business(models.Model):
     # Attributes
     name = models.CharField(max_length=200)
     website = models.TextField(null=True, blank=True)
+    facebook_link = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     logo = models.ImageField(null=True, blank=True)
 
     # Foreign keys
     address = models.ForeignKey(Address, on_delete=models.SET_NULL, null=True, blank=True)
-    user = models.ManyToManyField(Profile)
+    profile = models.ManyToManyField(Profile, null=True, blank=True)
 
     def __str__(self):
         return self.name
