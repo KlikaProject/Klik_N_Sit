@@ -84,7 +84,6 @@ class Table(models.Model):
     # Attributes
     num = models.PositiveSmallIntegerField()
     type = models.CharField(max_length=200, choices=TABLE_TYPE)
-    #sub_location = models.CharField(max_length=200, null=True, blank=True)
     max_persons = models.PositiveSmallIntegerField(null=True, blank=True)
     min_persons = models.PositiveSmallIntegerField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -124,7 +123,7 @@ class Business(models.Model):
 
     # Foreign keys
     address = models.ForeignKey(Address, on_delete=models.SET_NULL, null=True, blank=True)
-    profile = models.ManyToManyField(Profile, null=True, blank=True)
+    profile = models.ManyToManyField(Profile, blank=True)
 
     def __str__(self):
         return self.name

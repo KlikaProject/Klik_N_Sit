@@ -7,17 +7,23 @@ from rest_framework_simplejwt.views import (
 )
 
 urlpatterns = [
-  path('', views.get_routes),
+    path('', views.get_routes),
 
-  # Authentication
-  path('users/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-  path('users/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    # Authentication
+    path('users/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('users/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
-  # Tables
-  path('table/', views.get_tables),
-  path('table/<str:pk>/', views.get_table),
+    # Registration
+    path('register/', views.register_user, name='register new user'),
 
-  # for testing
-  path('users/details/', views.get_user_details),
+    # Tables
+    path('table/', views.get_tables, name='get all tables'),
+    path('table/<str:pk>/', views.get_table, name='get specific table'),
+
+    # Address
+
+
+    # for testing
+    path('users/details/', views.get_user_details),
 
 ]

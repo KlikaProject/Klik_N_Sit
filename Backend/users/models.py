@@ -30,7 +30,7 @@ class Profile(models.Model):
 
     # Attributes
     name = models.CharField(max_length=200, null=True, blank=True)
-    email = models.EmailField(max_length=300, null=True, blank=True)
+    #email = models.EmailField(max_length=300, null=True, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     role = models.CharField(max_length=200, choices=ROLE_TYPE)
     created = models.DateTimeField(auto_now_add=True)
@@ -42,4 +42,4 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return str(self.user.username)
+        return str(self.name)
